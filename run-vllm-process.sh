@@ -1,11 +1,9 @@
 #!/bin/bash
 #
 # Runs a vLLM process using all allocated GPUs on a node. Will set up multi-node configuration for vLLM according to
-# the number of reserved nodes. Any other arguments to this script will be passed on to vLLM. If there are no other
-# arguments, this script by deafult configures vLLM with 
+# the number of reserved nodes. 
 #   - tensor parallelism among the GPUs available on a node,
-#   - pipeline parallelism between nodes,
-#   - listening on unix domain socket file vllm-<SLURM_JOB_ID>.sock.
+#   - pipeline parallelism between nodes.
 #
 # In that case, only power-of-two amounts of GPUs should be allocated (and ideally full nodes when using multiple nodes).
 
