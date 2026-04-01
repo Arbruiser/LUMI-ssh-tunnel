@@ -25,9 +25,13 @@ python ssh_chat_with_LLM.py "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B"
 
 ...or your own Python script where client is:
 ```bash
+session_key = input("API Key: ").strip()
+
+# Connect to the local port forwarded by the SSH tunnel
 client = OpenAI(
     base_url="http://localhost:8000/v1", 
-    api_key="token-ignored",
+    api_key=session_key,
+)
 )
 ```
 
