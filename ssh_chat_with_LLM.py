@@ -15,7 +15,6 @@ client = OpenAI(
 # 3. Parse the model name and the API key
 parser = argparse.ArgumentParser()
 parser.add_argument("MODEL", type=str, help="Name of the model as registered in vLLM")
-parser.add_argument("API_KEY", type=str, help="API key from the SLURM output file")
 args = parser.parse_args()
 
 # 4. Initialize "messages" list which is the LLM's 'memory' of the conversation

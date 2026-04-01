@@ -15,10 +15,6 @@
 MODEL_NAME=$1
 shift 1
 
-# By default we configure vLLM to use a Unix Domain Socket file (vllm.sock) to listen for requests using the --uds argument.
-# This automatically restricts request to users that can access that file, instead of being an open HTTP port anyone 
-# on the system could potentially access.
-SOCKET_FILE=$TMPDIR/vllm-$SLURM_JOB_ID.sock
 VLLM_ARGS="--tensor-parallel-size $SLURM_GPUS_ON_NODE --pipeline-parallel-size $SLURM_NNODES --host 0.0.0.0 --port 8000 $@"
 
 if [[ -z "$MODEL_NAME" ]]; then
