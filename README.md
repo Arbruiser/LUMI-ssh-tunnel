@@ -18,7 +18,7 @@ ssh -N -L 8000:<NODELIST>:8000 <your username>@lumi.csc.fi
 `:8000` is the exit of the pipe on the compute node. 
 
 **Step 3**: 
-Run the Local Python Script
+Run the Local Python Script. It will prompt you to paste the API key you found in Step 1:
 ```bash
 python ssh_chat_with_LLM.py "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B"
 ```
