@@ -15,10 +15,9 @@ Jump into the compute node:
 srun --overlap --jobid <slurm-job-id> --pty bash
 ```
 
-Once you are at the shell inside your compute node, change the .sock file path (`/tmp/vllm-<JOBID>.sock`) to your JOBID and run this command to build the bridge from the socket file to the login node:
+Once you are at the shell inside your compute node, change the .sock file path (`SOCKET_PATH = "/tmp/vllm-*.sock"`) to your JOBID and run `bridge.py` from inside the container:
 ```
-singularity run -B /pfs,/scratch,/projappl /appl/local/laifs/containers/lumi-multitorch-latest.sif \
-python -c "import socket, threading; s = socket.socket(socket.AF_INET, socket.SOCK_STREAM); s.bind(('0.0.0.0', 8000)); s.listen(5); print('Bridging 8000 to socket...'); [(lambda c, _: [threading.Thread(target=lambda a,b: [(a.sendall(d) if d else None, a.close() if not d else None) for d in iter(lambda: b.recv(4096), b'')], args=(x, y)).start() for x, y in [(c, socket.socket(socket.AF_UNIX, socket.SOCK_STREAM).connect('/tmp/vllm-<JOBID>.sock') or socket.socket(socket.AF_UNIX, socket.SOCK_STREAM))]] )(s.accept()[0], None) for _ in iter(int, 1)]"
+singularity run -B /pfs,/scratch,/projappl /appl/local/laifs/containers/lumi-multitorch-latest.sif python bridge.py
 ```
 *Note*: Leave this running in your terminal. It will quietly sit there, translating network requests from your laptop into socket requests for vLLM.
 
