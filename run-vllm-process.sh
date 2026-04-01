@@ -13,7 +13,7 @@
 MODEL_NAME=$1
 shift 1
 
-VLLM_ARGS="--tensor-parallel-size $SLURM_GPUS_ON_NODE --pipeline-parallel-size $SLURM_NNODES --host 0.0.0.0 --port 8000 $@"
+VLLM_ARGS="--tensor-parallel-size $SLURM_GPUS_ON_NODE --pipeline-parallel-size $SLURM_NNODES --host 0.0.0.0 --port 8000 --load-format runai_streamer $@"
 
 if [[ -z "$MODEL_NAME" ]]; then
     echo "Usage: ./run_vllm_process.sh <model_name> "
