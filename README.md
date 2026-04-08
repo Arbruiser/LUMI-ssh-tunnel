@@ -1,10 +1,10 @@
 ## Connecting OpenCode coding agent from a Docker container on your machine to a vLLM instance on a LUMI compute node booked by you
 This demo is meant for running on Linux. Running on Mac or Windows requires small changes with Docker's IP address. 
 
-###**Step 0**:
+### **Step 0**:
 Clone this repository to your machine and to your project folder on LUMI.
 
-###**Step 1**:
+### **Step 1**:
 Connect to LUMI and start a vLLM server instance on a compute node. Change the `project` to your actual project number in `run-vllm-lumi4.sh` and run: 
 ```bash
 sbatch run-vllm-lumi4.sh
