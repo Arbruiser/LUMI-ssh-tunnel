@@ -19,14 +19,14 @@ sbatch run-vllm-lumi4.sh
 
 ---
 
-**Step 2**:
+### **Step 2**:
 Configure OpenCode Locally:
 1. Open `opencode.json` on your machine.
 2. Paste your API KEY into the `apiKey` field.
 
 ---
 
-**Step 3**
+### **Step 3**
 We will tell the LUMI login node to forward requests from Docker's IP address on local port 8000 to port 8000 on the compute node's IP address. It is a "double jump": Container -> Host -> LUMI Login -> LUMI Compute. Run:
 ```bash
 # Replace <NODELIST> and <your username>
@@ -42,7 +42,7 @@ ssh -N -L 172.17.0.1:8000:<NODELIST>:8000 <your username>@lumi.csc.fi
 
 ---
 
-**Step 4**: 
+### **Step 4**: 
 Building and launch the container. **Open an new terminal** and navigate to this project's directory and run:
 ```bash
 sudo docker build -t opencode-agent .
@@ -62,7 +62,7 @@ sudo docker run -d \
 
 ---
 
-**Step 5**:
+### **Step 5**:
 Open an interactive bash shell inside your running container:
 ```bash
 sudo docker exec -it opencode-sandbox /bin/bash
@@ -75,7 +75,7 @@ opencode
 
 ---
 
-**Step 6**:
+### **Step 6**:
 To stop the agent:
 ```bash
 sudo docker stop opencode-sandbox && sudo docker rm opencode-sandbox
