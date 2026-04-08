@@ -4,6 +4,7 @@ This demo is meant for running on Linux. Running on Mac or Windows requires smal
 ### **Step 0**:
 Clone this repository to your machine and to your project folder on LUMI.
 
+
 ### **Step 1**:
 Connect to LUMI and start a vLLM server instance on a compute node. Change the `project` to your actual project number in `run-vllm-lumi4.sh` and run: 
 ```bash
@@ -12,6 +13,7 @@ sbatch run-vllm-lumi4.sh
 1. Run `squeue --me` to find your NODELIST (e.g., `nid005500`).
 2. Open your slurm output file (`slurm-XXXXXXXX.out`) and copy the API KEY.
 3. Wait a few minutes for the weights to load. Check the end of `slurm-XXXXXXXX.out` for a line similar to `(APIServer pid=8379) INFO: Application startup complete.`.
+
 
 **Step 2**:
 Configure OpenCode Locally:
