@@ -1,6 +1,8 @@
 ## Connecting OpenCode coding agent from a Docker container on your machine to a vLLM instance on a LUMI compute node booked by you
 This demo is meant for running on Linux. Running on Mac or Windows requires small changes with Docker's IP address. 
 
+---
+
 ### **Step 0**:
 Clone this repository to your machine and to your project folder on LUMI.
 
@@ -22,6 +24,8 @@ Configure OpenCode Locally:
 1. Open `opencode.json` on your machine.
 2. Paste your API KEY into the `apiKey` field.
 
+---
+
 **Step 3**
 We will tell the LUMI login node to forward requests from Docker's IP address on local port 8000 to port 8000 on the compute node's IP address. It is a "double jump": Container -> Host -> LUMI Login -> LUMI Compute. Run:
 ```bash
@@ -35,6 +39,8 @@ ssh -N -L 172.17.0.1:8000:<NODELIST>:8000 <your username>@lumi.csc.fi
 - `172.17.0.1` is the IP address of Docker containers on your machine.
 - `<NODELIST>` is the compute node where your vLLM instance is running.
 - `:8000` is the exit of the pipe on the compute node. 
+
+---
 
 **Step 4**: 
 Building and launch the container. **Open an new terminal** and navigate to this project's directory and run:
@@ -54,6 +60,8 @@ sudo docker run -d \
 
 `-v "$(pwd):/app"`: Volume Mount. This "binds" your current folder on your laptop to the /app folder inside the container. Anything the AI agent writes in /app appears instantly on your machine.
 
+---
+
 **Step 5**:
 Open an interactive bash shell inside your running container:
 ```bash
@@ -64,6 +72,8 @@ From inside container, run opencode:
 ```bash
 opencode
 ```
+
+---
 
 **Step 6**:
 To stop the agent:
