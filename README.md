@@ -25,12 +25,12 @@ We will tell the LUMI login node to forward requests from Docker's IP address on
 ssh -N -L 172.17.0.1:8000:<NODELIST>:8000 <your username>@lumi.csc.fi
 ```
 *Note*: Leave this running in your terminal. It will quietly sit there, forwarding requests from your laptop into LUMI's compute node.
-`-N` stands for 'No execute', so that we don't start a new shell on LUMI.
-`-L` - 'Local port forwarding', makes a "pipe" from your machine to LUMI. 
-`8000:` is the "entrance pipe" on your machine, if any program *on your machine* taks to port 8000, it's forwarded to LUMI.
-`172.17.0.1` is the IP address of Docker containers on your machine.
-`<NODELIST>` is the compute node where your vLLM instance is running.
-`:8000` is the exit of the pipe on the compute node. 
+- `-N` stands for 'No execute', so that we don't start a new shell on LUMI.
+- `-L` - 'Local port forwarding', makes a "pipe" from your machine to LUMI. 
+- `8000:` is the "entrance pipe" on your machine, if any program *on your machine* taks to port 8000, it's forwarded to LUMI.
+- `172.17.0.1` is the IP address of Docker containers on your machine.
+- `<NODELIST>` is the compute node where your vLLM instance is running.
+- `:8000` is the exit of the pipe on the compute node. 
 
 **Step 4**: 
 Building and launch the container. **Open an new terminal** and navigate to this project's directory and run:
