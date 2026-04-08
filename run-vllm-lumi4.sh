@@ -29,4 +29,4 @@ echo "================================================================="
 
 # The default parallelisation options applied by the run_vllm_process script will apply 4-fold tensor parallelism,
 # which is fine for this, so we don't need to provide any options here except for the model name.
-srun singularity exec $CONTAINER_IMAGE ./run-vllm-process.sh deepseek-ai/DeepSeek-R1-Distill-Qwen-32B --api-key $API_KEY --enable-auto-tool-choice --tool-call-parser qwen2
+srun singularity exec $CONTAINER_IMAGE ./run-vllm-process.sh deepseek-ai/DeepSeek-R1-Distill-Qwen-32B --api-key $API_KEY --enable-auto-tool-choice --tool-call-parser hermes

@@ -49,6 +49,7 @@ sudo docker build -t opencode-agent .
 
 sudo docker run -d \
   --name opencode-sandbox \
+  --user $(id -u):$(id -g) \
   -e OPENAI_BASE_URL="http://172.17.0.1:8000/v1" \
   -v "$(pwd):/app" \
   opencode-agent
@@ -56,6 +57,7 @@ sudo docker run -d \
 
 - `-d`: Detached mode. Runs the container in the background so your terminal remains free to run commands.
 - `--name opencode-sandbox`: Gives the container a human readable name so you can find it easily with `docker ps`.
+- `--user $(id -u):$(id -g)`: This tells Docker, "Run this container using the User ID and Group ID of the person currently logged into this Linux machine."
 - `-e OPENAI_BASE_URL=...`: Environment Variable. This tells OpenCode exactly where to find your vLLM server (which is being piped through the tunnel at 172.17.0.1:8000).
 
 `-v "$(pwd):/app"`: Volume Mount. This "binds" your current folder on your laptop to the /app folder inside the container. Anything the AI agent writes in /app appears instantly on your machine.
@@ -65,12 +67,7 @@ sudo docker run -d \
 ### **Step 5**:
 Open an interactive bash shell inside your running container:
 ```bash
-sudo docker exec -it opencode-sandbox /bin/bash
-```
-
-From inside container, run opencode:
-```bash
-opencode
+sudo docker exec -it opencode-sandbox opencode
 ```
 
 ---
