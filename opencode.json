@@ -1,0 +1,23 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "lumi-vllm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LUMI vLLM",
+      "options": {
+        "baseURL": "http://172.17.0.1:8000/v1",
+        "apiKey": "ba21b78950e0c78d54a38f34c1ab6bdc"
+      },
+      "models": {
+        "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B": {
+          "name": "DeepSeek R1 32B (LUMI)"
+        }
+      }
+    }
+  },
+  "model": "lumi-vllm/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+  "permission": {
+    "edit": "allow",
+    "bash": "allow"
+  }
+}
