@@ -66,7 +66,12 @@ sudo docker run -d \
 ### **Step 5**:
 Open an interactive bash shell inside your running container:
 ```bash
-sudo docker exec -it opencode-sandbox opencode
+sudo docker exec -it opencode-sandbox /bin/bash
+```
+
+And run OpenCode:
+```bash
+opencode
 ```
 
 ---
