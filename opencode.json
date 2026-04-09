@@ -10,7 +10,7 @@
       },
       "models": {
         "Qwen/Qwen3-Coder-Next": {
-          "name": "DeepSeek R1 32B (LUMI)",
+          "name": "Qwen3-Coder",
           "limit": {
             "context": 150000,
             "output": 50000
