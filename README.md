@@ -95,4 +95,9 @@ If you're getting the error that the port is already occupied when spinning up v
 1) Try again, possibly get a different node where the port isn't occupied by another user;
 2) Change the port in `run-vllm-process.sh`, in your SSH tunnel, and in `opencode.json`. 
 
+If you're getting "error 429: too many requests...", add your HF access token to the `run-vll-lumi4.sh` script:
+```bash
+export HF_TOKEN="<your read HF token>"
+```
+
 [ai-inference page]: https://github.com/CSCfi/ai-inference-examples
