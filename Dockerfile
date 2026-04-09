@@ -1,9 +1,6 @@
 # A lightweight, official Python image
 FROM python:3.11-slim
 
-# Create /app directory inside the container
-WORKDIR /app
-
 # Install basic system tools and remove remporary installation files
 RUN apt-get update && apt-get install -y \
     git \
@@ -11,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     openssh-client \
     && rm -rf /var/lib/apt/lists/*
 
+WORKDIR /app
 
 # Create a Python virtual environment and add it to the system PATH
 ENV VIRTUAL_ENV=/opt/venv

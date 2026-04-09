@@ -49,7 +49,6 @@ sudo docker build -t opencode-agent .
 
 sudo docker run -d \
   --name opencode-sandbox \
-  --user $(id -u):$(id -g) \
   -e OPENAI_BASE_URL="http://172.17.0.1:8000/v1" \
   -v "$(pwd):/app" \
   opencode-agent
