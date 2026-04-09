@@ -43,7 +43,7 @@ ssh -N -L 172.17.0.1:8000:<NODELIST>:8000 <your username>@lumi.csc.fi
 ---
 
 ### **Step 4**: 
-Building and launch the container. **Open an new terminal** and navigate to this project's directory and run:
+Building and launch the container. **Open a new terminal** and navigate to this project's directory and run:
 ```bash
 sudo docker build -t opencode-agent .
 
