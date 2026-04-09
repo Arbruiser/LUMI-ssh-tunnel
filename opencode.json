@@ -5,19 +5,19 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "LUMI vLLM",
       "options": {
-        "baseURL": "http://172.17.0.1:8000/v1",
+        "baseURL": "http://172.17.0.1:8042/v1",
         "apiKey": "<YOUR_GENERATED_API_KEY>"
       },
       "models": {
-        "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B": {
-          "name": "DeepSeek R1 32B (LUMI)"
+        "Qwen/Qwen3-Coder-Next": {
+          "name": "DeepSeek R1 32B (LUMI)",
+          "limit": {
+            "context": 150000,
+            "output": 50000
+          }
         }
       }
     }
   },
-  "model": "lumi-vllm/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
-  "permission": {
-    "edit": "allow",
-    "bash": "allow"
-  }
+  "model": "lumi-vllm/Qwen/Qwen3-Coder-Next"
 }
