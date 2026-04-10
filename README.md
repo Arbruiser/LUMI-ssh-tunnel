@@ -1,43 +1,40 @@
-## Connecting OpenCode coding agent from a Docker container on your machine to a vLLM instance on a LUMI compute node booked by you
-Model used is *Qwen3-Coder-Next*. To change the model, you need to: 
-1) edit the `vllm serve` command at the end of `run-vllm-lumi4.sh`;
-2) edit `opencode.json` with the right model name.
+## Connecting OpenCode to vLLM on LUMI via SSH Tunnel
+This setup runs the OpenCode coding agent in a local Docker container and connects it to a Qwen3-Coder-Next instance running on a LUMI compute node.
 
-This demo is meant for running on Linux. Running on Mac or Windows requires small changes with Docker's IP address.
-Scripts for starting a vLLM server were adapted from [ai-inference] page to run directly on the node's port with an API key to avoid unwanted connections. 
+This guide is written for Linux. Mac/Windows users will need to adjust the Docker gateway IP (usually host.docker.internal).
+Scripts for starting a vLLM server were adapted from [ai-inference].
 
 ---
 
-### **Step 0**:
-Clone this repository to your machine and to your project folder on LUMI.
+### **Step 0: Clone the Repository**
+Clone this repository to your **local machine** and to your **project folder on LUMI**.
 
 ---
 
-### **Step 1**:
+### **Step 1: Start vLLM on LUMI**
 Connect to LUMI and start a vLLM server instance on a compute node. Change the `project` to your actual project number in `run-vllm-lumi4.sh` and run: 
+1. Log into LUMI and clone this repository;
+2. Edit `run-vllm-lumi4.sh` with your project number;
+3. Submit the job:
 ```bash
 sbatch run-vllm-lumi4.sh
 ```
-1. Run `squeue --me` to find your NODELIST (e.g., `nid005500`).
-2. Open your slurm output file (`slurm-XXXXXXXX.out`) and copy the API KEY.
-3. Wait a few minutes for the weights to load. Check the end of `slurm-XXXXXXXX.out` for a line similar to `(APIServer pid=8379) INFO: Application startup complete.`.
+4. Get your connection details:
+- Run `squeue --me` to find your NODELIST (e.g., `nid005500`);
+- Open your slurm output file (`slurm-XXXXXXXX.out`) and copy the API KEY;
+- Wait a few minutes for the weights to load. Check the end of `slurm-XXXXXXXX.out` for a line similar to `(APIServer pid=8379) INFO: Application startup complete.`.
 
 ---
 
-### **Step 2**:
-Configure OpenCode Locally:
-1. Open `opencode.json` on your machine.
-2. Paste your API KEY into the `apiKey` field.
-
----
-
-### **Step 3**
-We will tell the LUMI login node to forward requests from Docker's IP address on local port 8042 to port 8042 on the compute node's IP address. It is a "double jump": Container -> Host -> LUMI Login -> LUMI Compute. Run:
+### **Step 2: make the SSH tunnel**
+We will tell the LUMI login node to forward requests from Docker's IP address on local port 8042 to port 8042 on the compute node's IP address. It is a "double jump": Container -> Host -> LUMI Login -> LUMI Compute. Log out of LUMI, run this in your **local terminal** and leave it open:
 ```bash
 # Replace <NODELIST> and <your username>
 ssh -N -L 172.17.0.1:8042:<NODELIST>:8042 <your username>@lumi.csc.fi
 ```
 *Note*: Leave this running in your terminal. It will quietly sit there, forwarding requests from your machine into LUMI's compute node.
+
+**Command breakdown:**
 - `-N` stands for 'No execute', so that we don't start a new shell on LUMI.
 - `-L` - 'Local port forwarding', makes a "pipe" from your machine to LUMI. 
 - `8042:` is the "entrance pipe" on your machine, if any program *on your machine* taks to port 8042, it's forwarded to LUMI.
@@ -47,8 +44,9 @@ ssh -N -L 172.17.0.1:8042:<NODELIST>:8042 <your username>@lumi.csc.fi
 
 ---
 
-### **Step 4**: 
-Building and launching the container. **Open a new terminal** on your machine and navigate to this project's directory and run:
+### **Step 3: configure and launch Docker**
+Open a second terminal and edit `opencode.json` with your `apiKey` from Step 1.
+Then, build and run the container:
 ```bash
 sudo docker build -t opencode-agent .
 
@@ -61,27 +59,25 @@ sudo docker run -d \
 
 - `-d`: Detached mode. Runs the container in the background so your terminal remains free to run commands.
 - `--name opencode-sandbox`: Gives the container a human readable name so you can find it easily with `docker ps`.
-- `--user $(id -u):$(id -g)`: This tells Docker, "Run this container using the User ID and Group ID of the person currently logged into this Linux machine."
 - `-e OPENAI_BASE_URL=...`: Environment Variable. This tells OpenCode exactly where to find your vLLM server (which is being piped through the tunnel at 172.17.0.1:8042).
-
 `-v "$(pwd):/app"`: Volume Mount. This "binds" your current folder on your laptop to the /app folder inside the container. Anything the AI agent writes in /app appears instantly on your machine.
 
 ---
 
-### **Step 5**:
+### **Step 4: start the coding agent**
 Open an interactive bash shell inside your running container:
 ```bash
 sudo docker exec -it opencode-sandbox /bin/bash
 ```
 
-And run OpenCode:
+And run OpenCode from inside the container:
 ```bash
 opencode
 ```
 
 ---
 
-### **Step 6**:
+### **Step 5**:
 To stop the agent:
 ```bash
 sudo docker stop opencode-sandbox && sudo docker rm opencode-sandbox
@@ -99,5 +95,9 @@ If you're getting "error 429: too many requests...", add your HF access token to
 ```bash
 export HF_TOKEN="<your read HF token>"
 ```
+**Changing the model**
+To change the model, you need to: 
+1) edit the `vllm serve` command at the end of `run-vllm-lumi4.sh`;
+2) edit `opencode.json` with the right model name.
 
 [ai-inference page]: https://github.com/CSCfi/ai-inference-examples
