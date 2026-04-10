@@ -1,7 +1,7 @@
 ## Connecting OpenCode to vLLM on LUMI via SSH Tunnel
 This setup runs the OpenCode coding agent in a local Docker container and connects it to a Qwen3-Coder-Next instance running on a LUMI compute node.
 
-This guide is written for Linux. Mac/Windows users will need to adjust the Docker gateway IP (usually host.docker.internal).
+For now, this guide only covers Linux. Mac/Windows users will need to adjust the Docker gateway IP (usually `host.docker.internal`).
 Scripts for starting a vLLM server were adapted from [ai-inference].
 
 ---
