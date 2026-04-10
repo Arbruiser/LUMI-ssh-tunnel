@@ -45,7 +45,7 @@ ssh -N -L 172.17.0.1:8042:<NODELIST>:8042 <your username>@lumi.csc.fi
 ---
 
 ### **Step 3: configure and launch Docker**
-Open a second terminal and edit `opencode.json` with your `apiKey` from Step 1.
+Open a second terminal, clone this repository and edit `opencode.json` with your `apiKey` from Step 1.
 Then, build and run the container:
 ```bash
 sudo docker build -t opencode-agent .
