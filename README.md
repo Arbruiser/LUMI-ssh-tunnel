@@ -6,11 +6,6 @@ Scripts for starting a vLLM server were adapted from [ai-inference].
 
 ---
 
-### **Step 0: Clone the Repository**
-Clone this repository to your **local machine** and to your **project folder on LUMI**.
-
----
-
 ### **Step 1: Start vLLM on LUMI**
 Connect to LUMI and start a vLLM server instance on a compute node. Change the `project` to your actual project number in `run-vllm-lumi4.sh` and run: 
 1. Log into LUMI and clone this repository;
