@@ -83,15 +83,20 @@ To stop the tunnel:
 Go to the second terminal and press Ctrl+C
 
 ---
-**Troubleshooting:**
-If you're getting the error that the port is already occupied when spinning up vLLM, you can:
-1) Try again, possibly get a different node where the port isn't occupied by another user;
-2) Change the port in `run-vllm-process.sh`, in your SSH tunnel, and in `opencode.json`. 
 
-If you're getting "error 429: too many requests...", add your HF access token to the `run-vll-lumi4.sh` script:
+**Troubleshooting:**
+- **Port already occupied**: If you're getting the error that the port is already occupied when spinning up vLLM, you can:
+1) Try again, possibly get a different node where the port isn't occupied by another user;
+OR
+2) Change the port in `run-vllm-process.sh`, in your SSH tunnel command, and in `opencode.json`. 
+
+- Error 429 (Rate Limited): If HuggingFace blocks the weight download, add your token to the `run-vll-lumi4.sh` script:
 ```bash
 export HF_TOKEN="<your read HF token>"
 ```
+
+---
+
 **Changing the model**
 To change the model, you need to: 
 1) edit the `vllm serve` command at the end of `run-vllm-lumi4.sh`;
