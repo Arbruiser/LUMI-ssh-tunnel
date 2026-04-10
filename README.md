@@ -53,7 +53,7 @@ sudo docker run -d \
   -v "$(pwd):/app" \
   opencode-agent
 ```
-
+**Command breakdown:**
 - `-d`: Detached mode. Runs the container in the background so your terminal remains free to run commands.
 - `--name opencode-sandbox`: Gives the container a human readable name so you can find it easily with `docker ps`.
 - `-e OPENAI_BASE_URL=...`: Environment Variable. This tells OpenCode exactly where to find your vLLM server (which is being piped through the tunnel at 172.17.0.1:8042).
