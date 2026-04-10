@@ -97,8 +97,7 @@ export HF_TOKEN="<your read HF token>"
 
 ---
 
-**Changing the model**
-To change the model, you need to: 
+**To change the model**, you need to: 
 1) edit the `vllm serve` command at the end of `run-vllm-lumi4.sh`;
 2) edit `opencode.json` with the right model name.
 
