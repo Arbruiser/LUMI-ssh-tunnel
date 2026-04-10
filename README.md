@@ -22,7 +22,8 @@ sbatch run-vllm-lumi4.sh
 ---
 
 ### **Step 2: make the SSH tunnel**
-We will tell the LUMI login node to forward requests from Docker's IP address on local port 8042 to port 8042 on the compute node's IP address. It is a "double jump": Container -> Host -> LUMI Login -> LUMI Compute. Log out of LUMI, run this in your **local terminal** and leave it open:
+We will tell the LUMI login node to forward requests from Docker's IP address on local port 8042 to port 8042 on the compute node's IP address. It is a "double jump": Container -> Host -> LUMI Login -> LUMI Compute. 
+Log out of LUMI, run this in your **local terminal** and leave it open:
 ```bash
 # Replace <NODELIST> and <your username>
 ssh -N -L 172.17.0.1:8042:<NODELIST>:8042 <your username>@lumi.csc.fi
