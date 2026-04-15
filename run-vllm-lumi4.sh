@@ -19,6 +19,9 @@ export HF_HOME=/scratch/$SLURM_JOB_ACCOUNT/hf-cache/
 # Torch compilation currently fails in the container, so we disable it here.
 export TORCH_COMPILE_DISABLE=1
 
+# Make sure vLLM only sees available GPU(s)
+export HIP_VISIBLE_DEVICES=$ROCR_VISIBLE_DEVICES
+
 # Generate the API key
 export API_KEY=$(openssl rand -hex 16)
 
