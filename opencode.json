@@ -6,18 +6,14 @@
       "name": "LUMI vLLM",
       "options": {
         "baseURL": "http://host.docker.internal:8042/v1",
-        "apiKey": "<YOUR_GENERATED_API_KEY>"
+        "apiKey": "<YOUR API KEY>"
       },
       "models": {
-        "Qwen/Qwen3-Coder-Next": {
-          "name": "Qwen3-Coder",
-          "limit": {
-            "context": 150000,
-            "output": 50000
-          }
+        "Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8": {
+          "name": "Qwen3-Coder-30B-FP8"
         }
       }
     }
   },
-  "model": "lumi-vllm/Qwen/Qwen3-Coder-Next"
+  "model": "lumi-vllm/Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8"
 }

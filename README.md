@@ -63,7 +63,6 @@ docker build -t opencode-agent .
 docker run -d \
   --name opencode-sandbox \
   --add-host=host.docker.internal:host-gateway \
-  #-e OPENAI_BASE_URL="http://host.docker.internal:8042/v1" \ not needed?
   -v "$(pwd):/app" \
   opencode-agent
 ```

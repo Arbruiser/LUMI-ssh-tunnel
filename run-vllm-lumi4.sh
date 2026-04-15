@@ -3,10 +3,10 @@
 #SBATCH -p dev-g
 #SBATCH --time 2:00:00
 #SBATCH --tasks-per-node 1
-#SBATCH --cpus-per-task=28
-#SBATCH --gpus-per-node 4
+#SBATCH --cpus-per-task=7
+#SBATCH --gpus-per-node 1
 #SBATCH --nodes 1
-#SBATCH --mem 240G
+#SBATCH --mem 60G
 
 # We use the PyTorch container provided by the LUMI AI Factory Services, which contains vLLM.
 export CONTAINER_IMAGE=/appl/local/laifs/containers/lumi-multitorch-latest.sif
@@ -30,10 +30,8 @@ echo "🔑 YOUR SUPER SECRET API KEY FOR THIS SESSION IS:"
 echo $API_KEY
 echo "================================================================="
 
-# The default parallelisation options applied by the run_vllm_process script will apply 4-fol>
-# which is fine for this, so we don't need to provide any options here except for the model n>
-
-srun singularity exec $CONTAINER_IMAGE ./run-vllm-process.sh Qwen/Qwen3-Coder-Next \
+# Start vLLM
+srun singularity exec $CONTAINER_IMAGE ./run-vllm-process.sh Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8 \
  --api-key $API_KEY \
  --enable-auto-tool-choice \
  --tool-call-parser qwen3_coder
