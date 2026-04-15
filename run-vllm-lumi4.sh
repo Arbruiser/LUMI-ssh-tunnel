@@ -3,10 +3,10 @@
 #SBATCH -p dev-g
 #SBATCH --time 2:00:00
 #SBATCH --tasks-per-node 1
-#SBATCH --cpus-per-task=7
-#SBATCH --gpus-per-node 1
+#SBATCH --cpus-per-task=14
+#SBATCH --gpus-per-node 2
 #SBATCH --nodes 1
-#SBATCH --mem 60G
+#SBATCH --mem 120G
 
 # We use the PyTorch container provided by the LUMI AI Factory Services, which contains vLLM.
 export CONTAINER_IMAGE=/appl/local/laifs/containers/lumi-multitorch-latest.sif
@@ -31,7 +31,7 @@ echo $API_KEY
 echo "================================================================="
 
 # Start vLLM
-srun singularity exec $CONTAINER_IMAGE ./run-vllm-process.sh Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8 \
+srun singularity exec $CONTAINER_IMAGE ./run-vllm-process.sh Qwen/Qwen3-Coder-30B-A3B-Instruct \
  --api-key $API_KEY \
  --enable-auto-tool-choice \
  --tool-call-parser qwen3_coder
