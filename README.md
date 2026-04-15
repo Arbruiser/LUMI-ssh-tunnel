@@ -6,7 +6,6 @@ Scripts for starting a vLLM server were adapted from [ai-inference page].
 ---
 
 ### **Step 1: Start vLLM on LUMI**
-Connect to LUMI and start a vLLM server instance on a compute node. Change the `project` to your actual project number in `run-vllm-lumi4.sh` and run: 
 1. Log into LUMI and clone this repository;
 2. Edit `run-vllm-lumi4.sh` with your project number;
 3. Submit the job:
@@ -16,7 +15,10 @@ sbatch run-vllm-lumi4.sh
 4. Get your connection details:
 - Run `squeue --me` to find your NODELIST (e.g., `nid005500`);
 - Open your slurm output file (`slurm-XXXXXXXX.out`) and copy the API KEY;
-- Wait a few minutes for the weights to load. Check the end of `slurm-XXXXXXXX.out` for a line similar to `(APIServer pid=8379) INFO: Application startup complete.`.
+- Wait a few minutes for the weights to load. Check the end of `slurm-XXXXXXXX.out` for a line similar to: 
+```bash
+(APIServer pid=8379) INFO: Application startup complete.
+```
 
 ---
 

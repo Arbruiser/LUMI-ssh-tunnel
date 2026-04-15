@@ -5,7 +5,7 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "LUMI vLLM",
       "options": {
-        "baseURL": "http://172.17.0.1:8042/v1",
+        "baseURL": "http://host.docker.internal:8042/v1",
         "apiKey": "<YOUR_GENERATED_API_KEY>"
       },
       "models": {
