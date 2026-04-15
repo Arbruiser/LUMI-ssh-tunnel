@@ -1,7 +1,7 @@
 ## Connecting OpenCode to vLLM on LUMI via SSH Tunnel
 This setup runs the OpenCode coding agent in a local Docker container and connects it to a Qwen3-Coder-Next instance running on a LUMI compute node.
 
-Scripts for starting a vLLM server were adapted from [ai-inference].
+Scripts for starting a vLLM server were adapted from [ai-inference page].
 
 ---
 
