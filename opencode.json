@@ -1,16 +1,19 @@
 {
   "$schema": "https://opencode.ai/config.json",
+    "permission": {
+    "bash": "ask",
+    "edit": "ask"
+    },
   "provider": {
     "lumi-vllm": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "LUMI vLLM",
       "options": {
-        "baseURL": "http://host.docker.internal:8042/v1",
-        "apiKey": "<YOUR API KEY>"
+        "baseURL": "http://host.docker.internal:8042/v1"
       },
       "models": {
         "Qwen/Qwen3-Coder-30B-A3B-Instruct": {
-          "name": "Qwen3-Coder-30B-"
+          "name": "Qwen3-Coder-30B-A3B-Instruct"
         }
       }
     }

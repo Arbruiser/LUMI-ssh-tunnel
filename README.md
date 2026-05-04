@@ -51,7 +51,7 @@ ssh -N -L 8042:<NODELIST>:8042 <your username>@lumi.csc.fi
 ---
 
 ### **Step 3: configure and launch Docker**
-Open a second terminal, clone this repository and edit `opencode.json` with your `apiKey` from Step 1.
+Open a second terminal and clone this repository.
 
 > [!NOTE]
 > Note for Linux users: If you haven't added your user to the [docker group](https://docs.docker.com/engine/install/linux-postinstall/), you will need to prefix the docker commands with `sudo`
@@ -81,10 +81,18 @@ Open an interactive bash shell inside your running container:
 docker exec -it opencode-sandbox /bin/bash
 ```
 
-And run OpenCode from inside the container:
+Run OpenCode from inside the container:
 ```bash
 opencode
 ```
+
+in the OpenCode window, type:
+```bash
+/connect
+```
+
+Search for and select `LUMI vLLM`, and add your `apiKey` from Step 1. Now you can use OpenCode as you normally would!
+`opencode.json` is configured to always ask for your permission to run bash commands or to edit files. 
 
 ---
 
