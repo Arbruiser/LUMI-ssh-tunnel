@@ -86,12 +86,12 @@ Run OpenCode from inside the container:
 opencode
 ```
 
-in the OpenCode window, type:
+in the OpenCode window, run:
 ```bash
 /connect
 ```
 
-Search for and select `LUMI vLLM`, and add your `apiKey` from Step 1. Now you can use OpenCode as you normally would!
+Search for and select `LUMI vLLM`, and add your API key from Step 1. Now you can use OpenCode as you normally would!
 `opencode.json` is configured to always ask for your permission to run bash commands or to edit files. 
 
 ---
